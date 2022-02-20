@@ -1,18 +1,38 @@
-def s(a, *vs, b=10):
-   res = a + b
-   for v in vs:
-       res += v
-   return res
+"""
+C(n, 0) = 1,
+k > n, то C(n, k) = 0,
+C(n, k) = C(n - 1, k) + C(n - 1, k - 1)
 
-print(s(5, 5, 5, 5, 1))
-print(s(11, 10, b=10))
-print(s(21))
-print(s(b=31))
+Enter:
+n и k (1 ≤ n ≤ 10, 0 ≤ k ≤ 10)
+Return:
+C(n, k)
 
-s(5, 5, 5, 5, 1)
+Sample Input 1:
+3 2
+Sample Output 1:
+3
 
-s(11, 10, b=10)
-s(21)
-s(11, b=20)
+Sample Input 2:
+10 5
+Sample Output 2:
+252
+"""
 
-s(11, 10)
+
+
+def combination(n, k):
+    if k == 0:
+        return 1
+    elif k > n:
+        return 0
+    return combination(n - 1, k) + combination(n - 1, k - 1)
+
+def main():
+    n, k = map(int, input().split())
+    print(combination(n, k))
+
+
+
+if __name__ == '__main__':
+    main()

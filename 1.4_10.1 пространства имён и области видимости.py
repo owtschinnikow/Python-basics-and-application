@@ -16,11 +16,32 @@ global
 None
 bar
 foo
+
+create <namespace> <parent>
+add <namespace> <var>
+get <namespace> <var>
 """
 
+command_list = ['create', 'add', 'get']
+
+# def read_data():
+#     command, namespace, argument = input().split()
+#     return command, namespace, argument
+
 def main():
-    number = input().split()
-    command, namespace, argument = input().split()
+    namespace_dict = {'global': []}
+    number = int(input())
+    for i in range(number):
+        command, namespace, argument = input().split()
+        if command == command_list[0]:
+            namespace_dict[argument] = [namespace]
+            print(namespace_dict)
+        if command == command_list[1]:
+            namespace_dict[namespace].append(argument)
+            print(namespace_dict)
+        if command == command_list[2]:
+            namespace_dict[namespace]
+            print(namespace_dict)
 
 
 if __name__ == '__main__':

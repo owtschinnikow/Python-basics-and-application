@@ -1,0 +1,7 @@
+6
+create foo global
+create bar foo
+add global a
+add foo a
+add bar c
+get global c

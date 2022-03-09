@@ -1,0 +1,4 @@
+3                                                                                                                                                        
+create foo global                                                                                                                                        
+add foo a                                                                                                                                                
+get global a

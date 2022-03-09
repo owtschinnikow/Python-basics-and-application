@@ -24,12 +24,14 @@ get <namespace> <var>
 """
 
 
-def main1():
-    number = int(input())
-    print(number)
-    for i in range(number):
-        command, namespace, argument = input().split()
-        print(command, namespace, argument)
+def return_namespace(namespace_dict, namespace, argument):
+    if namespace not in namespace_dict:
+        return print(None)
+    if argument in namespace_dict[namespace][0]:
+        return print(namespace)
+    if argument not in namespace_dict[namespace_dict[namespace][1][0]][0]:
+        return print(None)
+    return_namespace(namespace_dict, namespace_dict[namespace][1][0], argument)
 
 
 def main():
@@ -39,24 +41,29 @@ def main():
         command, namespace, argument = input().split()
 
         if command == 'create':
-            print('create - ', namespace, argument)
+            # print('create - ', namespace, argument)
             if namespace not in namespace_dict:
                 namespace_dict[namespace] = [[], [argument]]
             else:
                 namespace_dict[namespace][1].append(argument)
-            print('namespace_dict - ', namespace_dict)
+            # print('namespace_dict - ', namespace_dict)
 
         elif command == 'add':
-            print('add - ', namespace, argument)
+            # print('add - ', namespace, argument)
             if namespace not in namespace_dict:
                 namespace_dict[namespace] = [[argument], []]
             else:
                 namespace_dict[namespace][0].append(argument)
-            print('namespace_dict - ', namespace_dict)
+            # print('namespace_dict - ', namespace_dict)
 
         elif command == 'get':
-            print('get - ', namespace, argument)
             print('namespace_dict - ', namespace_dict)
+            print('get - ', namespace, argument)
+            return_namespace(namespace_dict, namespace, argument)
+
+
+
+
 
 
 if __name__ == '__main__':

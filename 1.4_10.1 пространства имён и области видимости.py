@@ -22,14 +22,16 @@ add <namespace> <var>
 get <namespace> <var>
 ключ - имя_пространства (parent),  значение - [переменные*, имена_пространств(children)]
 """
-
+"""
+namespace_dict -  {'foo': [['a'], ['global']], 'bar': [['c'], ['foo']], 'global': [['a'], []]}
+"""
 
 def return_namespace(namespace_dict, namespace, argument):
     if namespace not in namespace_dict:
         return print(None)
     if argument in namespace_dict[namespace][0]:
         return print(namespace)
-    if argument not in namespace_dict[namespace_dict[namespace][1][0]][0]:
+    if namespace_dict[namespace][1][0] == [] :
         return print(None)
     return_namespace(namespace_dict, namespace_dict[namespace][1][0], argument)
 

@@ -27,11 +27,23 @@ namespace_dict -  {'foo': [['a'], ['global']], 'bar': [['c'], ['foo']], 'global'
 """
 
 def return_namespace(namespace_dict, namespace, argument):
+    """
+    :param namespace_dict:
+    :param namespace:
+    :param argument:
+    :return:
+
+    >>> return_namespace({'global': [['a'], []], 'foo': [['b'], ['global']]}, 'foo', 'a')
+    global
+
+    >>> return_namespace({'global': [['a'], []], 'foo': [['b'], ['global']]}, 'foo', 'c')
+    IndexError: list index out of range
+    """
     if namespace not in namespace_dict:
         return print(None)
     if argument in namespace_dict[namespace][0]:
         return print(namespace)
-    if namespace_dict[namespace][1][0] == [] :
+    if not namespace_dict[namespace][1]:
         return print(None)
     return_namespace(namespace_dict, namespace_dict[namespace][1][0], argument)
 
@@ -59,14 +71,13 @@ def main():
             # print('namespace_dict - ', namespace_dict)
 
         elif command == 'get':
-            print('namespace_dict - ', namespace_dict)
-            print('get - ', namespace, argument)
+            # print('namespace_dict - ', namespace_dict)
+            # print('get - ', namespace, argument)
             return_namespace(namespace_dict, namespace, argument)
 
 
 
-
-
-
 if __name__ == '__main__':
+    # import doctest
+    # doctest.testmod(verbose=True)
     main()

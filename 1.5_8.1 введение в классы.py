@@ -19,8 +19,10 @@ class MoneyBox:
         :param v:
         :return:
         """
-
-
+        if self.capacity - self.number_of_coins - self.v > 0:
+            print(True)
+        else:
+            print(False)
 
     def add(self, v):
         """
@@ -28,3 +30,7 @@ class MoneyBox:
         :param v:
         :return:
         """
+        if self.can_add(self, v):
+            self.number_of_coins += v
+        else:
+            print(False)

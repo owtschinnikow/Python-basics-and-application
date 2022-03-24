@@ -38,9 +38,8 @@ def check_class(namespace_dict, namespace_parent, namespace_child):
     if namespace_parent in namespace_dict[namespace_child]:
         return 'Yes'
     # if namespace_child in namespace_dict[namespace_parent]:
-    #     return print('No')
+    #     return 'No'
     for namespace in namespace_dict[namespace_child]:
-        # print('ANSWER - namespace_dict[namespace_child]', namespace_dict[namespace_child])
         check_class(namespace_dict, namespace_parent, namespace)
 
 
@@ -61,10 +60,10 @@ def main():
     quantity = int(input())
     for i in range(quantity):
         namespace_parent, namespace_child = input().split()
-        print('REQUEST - ', namespace_parent, namespace_child)
-        # check_class(namespace_dict, namespace_parent, namespace_child)
-        print(check_class(namespace_dict, namespace_parent, namespace_child))
-
+        answer = check_class(namespace_dict, namespace_parent, namespace_child)
+        if answer == None:
+            answer = 'No'
+        print('REQUEST - ', namespace_parent, namespace_child, answer)
 
 if __name__ == '__main__':
     # import doctest

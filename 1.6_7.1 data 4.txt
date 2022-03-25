@@ -1,0 +1,13 @@
+11
+classA : classB classC classD classG classH
+classB : classC classE classG classH classK classL
+classC : classE classD classH classK classL
+classE : classD classF classK classL
+classD : classG classH
+classF : classK
+classG : classF
+classH : classL
+classK : classH classL
+classL
+1
+classK classD

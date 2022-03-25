@@ -16,6 +16,8 @@ Yes
 Yes
 Yes
 No
+
+"Yes", если класс 1 является предком класса 2
 """
 
 """
@@ -31,13 +33,22 @@ No
 
 
 def check_class(namespace_dict, namespace_parent, namespace_child):
-    if namespace_parent not in namespace_dict:
-        return 'No'
+    """
+    Класс A является предком класса B, если
+    A = B;
+    A - прямой предок B
+    существует такой класс C, что C - прямой предок B и A - предок C
+
+    :param namespace_dict:
+    :param namespace_parent:
+    :param namespace_child:
+    :return:
+    """
     if namespace_parent == namespace_child:
         return 'Yes'
     if namespace_parent in namespace_dict[namespace_child]:
         return 'Yes'
-    # if namespace_child in namespace_dict[namespace_parent]:
+    # if namespace_child not in namespace_dict:
     #     return 'No'
     for namespace in namespace_dict[namespace_child]:
         check_class(namespace_dict, namespace_parent, namespace)
@@ -48,12 +59,11 @@ def main():
     number = int(input())
     for i in range(number):
         data_input = input()
-        # print(data_input)
         if ' : ' not in data_input:
             namespace_dict[data_input] = []
         else:
-            namespace_parent, namespace_child = data_input.split(' : ')
-            namespace_dict[namespace_parent] = [*namespace_child.split()]
+            namespace_child, namespace_parent  = data_input.split(' : ')
+            namespace_dict[namespace_child] = [*namespace_parent.split()]
 
     print(namespace_dict)
 
@@ -61,9 +71,7 @@ def main():
     for i in range(quantity):
         namespace_parent, namespace_child = input().split()
         answer = check_class(namespace_dict, namespace_parent, namespace_child)
-        if answer == None:
-            answer = 'No'
-        print('REQUEST - ', namespace_parent, namespace_child, answer)
+        print(namespace_parent, namespace_child, answer)
 
 if __name__ == '__main__':
     # import doctest

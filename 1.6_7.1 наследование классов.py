@@ -42,6 +42,26 @@ No
 """
 
 
+import collections
+
+def breadth_first_search(graph, root, peak):
+    if root not in graph:
+        return print('No')
+    visited, queue = set(), collections.deque([root])
+    visited.add(root)
+    while queue:
+        vertex = queue.popleft()
+        for neighbour in graph[vertex]:
+            if neighbour not in visited:
+                visited.add(neighbour)
+                queue.append(neighbour)
+    # print(peak, root, visited, end=' ')
+    if peak in visited:
+        print('Yes')
+    else:
+        print('No')
+
+
 def check_class(namespace_dict, namespace_parent, namespace_child):
     """
     Класс A является предком класса B, если
@@ -75,13 +95,15 @@ def main():
             namespace_child, namespace_parent  = data_input.split(' : ')
             namespace_dict[namespace_child] = [*namespace_parent.split()]
 
-    print(namespace_dict)
+    # print(namespace_dict)
 
     quantity = int(input())
     for i in range(quantity):
         namespace_parent, namespace_child = input().split()
-        answer = check_class(namespace_dict, namespace_parent, namespace_child)
-        print(namespace_parent, namespace_child, answer)
+        breadth_first_search(namespace_dict, namespace_child, namespace_parent)
+
+        # answer = check_class(namespace_dict, namespace_parent, namespace_child)
+        # print(namespace_parent, namespace_child, answer)
 
 if __name__ == '__main__':
     # import doctest

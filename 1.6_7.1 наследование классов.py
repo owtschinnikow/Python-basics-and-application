@@ -30,6 +30,16 @@ No
     return_namespace(namespace_dict, namespace_dict[namespace][1][0], argument)
 """
 
+"""
+    'A G',      # Yes   # A предок G через B/C, D, F
+    'A Z',      # No    # Y потомок A, но не Y
+    'A W',      # Yes   # A предок W через Y, V
+    'X W',      # Yes   # X предок W через Y, V
+    'X QWE',    # No    # нет такого класса QWE
+    'A X',      # No    # классы есть, но они нет родства :)
+    'X X',      # Yes   # родитель он же потомок
+    '1 1',      # No    # несуществующий класс
+"""
 
 
 def check_class(namespace_dict, namespace_parent, namespace_child):

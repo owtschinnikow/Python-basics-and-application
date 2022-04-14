@@ -61,29 +61,6 @@ def breadth_first_search(graph, root, peak):
     else:
         print('No')
 
-
-def check_class(namespace_dict, namespace_parent, namespace_child):
-    """
-    Класс A является предком класса B, если
-    A = B;
-    A - прямой предок B
-    существует такой класс C, что C - прямой предок B и A - предок C
-
-    :param namespace_dict:
-    :param namespace_parent:
-    :param namespace_child:
-    :return:
-    """
-    if namespace_parent == namespace_child:
-        return 'Yes'
-    if namespace_parent in namespace_dict[namespace_child]:
-        return 'Yes'
-    # if namespace_child not in namespace_dict:
-    #     return 'No'
-    for namespace in namespace_dict[namespace_child]:
-        check_class(namespace_dict, namespace_parent, namespace)
-
-
 def main():
     namespace_dict = {}
     number = int(input())
@@ -102,8 +79,8 @@ def main():
         namespace_parent, namespace_child = input().split()
         breadth_first_search(namespace_dict, namespace_child, namespace_parent)
 
-        # answer = check_class(namespace_dict, namespace_parent, namespace_child)
-        # print(namespace_parent, namespace_child, answer)
+
+
 
 if __name__ == '__main__':
     # import doctest

@@ -1,9 +1,22 @@
+"""
+Sample Input:
+4
+ArithmeticError
+ZeroDivisionError : ArithmeticError
+OSError
+FileNotFoundError : OSError
+4
+ZeroDivisionError
+OSError
+ArithmeticError
+FileNotFoundError
 
-try:
-    x = [1, 2, "hello", 7]
-    x.sort()
-    print(x)
-except TypeError:
-    print("TypeError")
+Sample Output:
+FileNotFoundError
+"""
 
-print("I can catch")
+
+
+
+if __name__ == '__main__':
+    main()

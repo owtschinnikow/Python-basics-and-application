@@ -27,10 +27,8 @@ def breadth_first_search(graph, root):
             if neighbour not in visited:
                 visited.append(neighbour)
                 queue.append(neighbour)
-    print(visited)
-    # print(*list(visited))
-    # if len(visited) != 1:
-    #     if list(visited)[0] !=
+    return visited
+
 
 def main():
     namespace_dict = {}
@@ -42,17 +40,33 @@ def main():
         else:
             namespace_child, namespace_parent  = data_input.split(' : ')
             namespace_dict[namespace_child] = [*namespace_parent.split()]
-    print(namespace_dict)
+    # print(namespace_dict)
 
 
     quantity = int(input())
-    namespace_parent_space = []
+    namespace_parent_list = []
+    namespace_parent_list_wrong = []
     for i in range(quantity):
-        namespace_parent = input()
-        namespace_parent_space.append(namespace_parent)
-        # print(namespace_parent)
-        print(namespace_parent_space)
-        breadth_first_search(namespace_dict, namespace_parent)
+        namespace_parent_list.append(input())
+    # print(namespace_parent_list, '\n')
+
+    for n, namespace in enumerate(namespace_parent_list):
+        # print(n, namespace)
+        if namespace in namespace_parent_list[0:n]:
+            # print(namespace, namespace_parent_list[0:n])
+            print(namespace)
+            # print()
+            namespace_parent_list_wrong.append(namespace)
+
+        else:
+            breadth_first_search_list = breadth_first_search(namespace_dict, namespace)
+            # print(namespace, namespace_parent_list[0:n], breadth_first_search_list)
+            for i in breadth_first_search_list:
+                if i in namespace_parent_list[0:n]:
+                    print(namespace)
+                    break
+            # print()
+
 
 
 if __name__ == '__main__':

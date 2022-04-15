@@ -19,17 +19,18 @@ FileNotFoundError
 import collections
 
 def breadth_first_search(graph, root):
-    if root not in graph:
-        return print('No')
-    visited, queue = set(), collections.deque([root])
-    visited.add(root)
+    visited, queue = [], collections.deque([root])
+    visited.append(root)
     while queue:
         vertex = queue.popleft()
         for neighbour in graph[vertex]:
             if neighbour not in visited:
-                visited.add(neighbour)
+                visited.append(neighbour)
                 queue.append(neighbour)
-    print(*visited)
+    print(visited)
+    # print(*list(visited))
+    # if len(visited) != 1:
+    #     if list(visited)[0] !=
 
 def main():
     namespace_dict = {}
@@ -42,10 +43,15 @@ def main():
             namespace_child, namespace_parent  = data_input.split(' : ')
             namespace_dict[namespace_child] = [*namespace_parent.split()]
     print(namespace_dict)
+
+
     quantity = int(input())
+    namespace_parent_space = []
     for i in range(quantity):
         namespace_parent = input()
-        print(namespace_parent)
+        namespace_parent_space.append(namespace_parent)
+        # print(namespace_parent)
+        print(namespace_parent_space)
         breadth_first_search(namespace_dict, namespace_parent)
 
 

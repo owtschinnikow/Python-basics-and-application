@@ -7,4 +7,7 @@ def greet(name):
         return "Hello, " + name
     else:
         raise BadName(name + ' is inappropriate name')
-    
+
+print(__name__)
+
+print("print from exceptions")

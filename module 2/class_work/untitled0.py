@@ -15,11 +15,6 @@ pip install pycrypto
 > Блок с отступами
 """
 
-pip install pycrypto
-
-
-
-pip install simple-crypt
 
 import simplecrypt
 from simplecrypt import *

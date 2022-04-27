@@ -6,23 +6,26 @@ False
 """
 
 class multifilter:
-    def judge_half(pos, neg):
+    def judge_half(self, pos, neg):
         """
         допускает элемент, если его допускает хотя бы половина фукнций (pos >= neg)
         """
-        pass
+        if pos >= neg:
+            return True
 
-    def judge_any(pos, neg):
+    def judge_any(self, pos, neg):
         """
         допускает элемент, если его допускает хотя бы одна функция (pos >= 1)
         """
-        pass
+        if pos >= 1:
+            return True
 
-    def judge_all(pos, neg):
+    def judge_all(self, pos, neg):
         """
         допускает элемент, если его допускают все функции (neg == 0)
         """
-        pass
+        if neg == 0:
+            return True
 
     def __init__(self, iterable, *funcs, judge=judge_any):
         """
@@ -38,9 +41,16 @@ class multifilter:
         """
         возвращает итератор по результирующей последовательности
         """
-        pos, neg = 0, 0
         for elem in self.iterable:
-            pass
+            pos, neg = 0, 0
+            for func in self.funcs:
+                if func(elem):
+                    pos += 1
+                else:
+                    neg += 1
+            # yield elem, pos, neg
+            if self.judge(pos, neg) == е:
+                yield elem
 
 
 

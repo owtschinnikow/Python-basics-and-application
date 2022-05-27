@@ -16,7 +16,7 @@ import os
 #     print(current_dir, dirs, files)
 
 name = 'main'
-os.chdir(name)
+# os.chdir(name)
 print(os.getcwd())
 dir_list = []
 for current_dir, dirs, files in os.walk("."):

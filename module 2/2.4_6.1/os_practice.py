@@ -16,20 +16,15 @@ import os
 #     print(current_dir, dirs, files)
 
 name = 'main'
-# os.chdir(name)
+os.chdir(name)
 print(os.getcwd())
 dir_list = []
 for current_dir, dirs, files in os.walk("."):
     for file in files:
         if file[-3:] == '.py':
-            print(current_dir)
             current_dir = current_dir.replace('\\', '/')
+            current_dir = current_dir.replace('.', 'main')
             print(current_dir)
-            current_dir = current_dir[1:]
-            print(current_dir)
-            print()
-            # print(current_dir)
-            word = name + current_dir
-            dir_list.append(word)
-            # print(word)
+            dir_list.append(current_dir)
+            break
 print(dir_list)

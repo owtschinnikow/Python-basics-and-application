@@ -29,3 +29,4 @@ for current_dir, dirs, files in os.walk("."):
             dir_list.append(current_dir)
             break
 print(dir_list)
+

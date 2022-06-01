@@ -31,12 +31,14 @@ Impossible
 """
 
 
-def count(s, a, b):
+def count_replaces(s, a, b):
     n = 0
     control_number = 0
     if a not in s:
         return n
     if a == b:
+        return 'Impossible'
+    if a in b:
         return 'Impossible'
 
     while n != 1000:
@@ -51,8 +53,26 @@ def count(s, a, b):
 
 def main():
     s, a, b = input().upper(), input().upper(), input().upper()
-    print(count(s, a, b))
+    print(count_replaces(s, a, b))
 
 
-if __name__ == '__main__':
-    main()
+def test():
+    lst = [
+        ["ababa", "a", "b", 1],  # замены конечны
+        ["ababa", "b", "a", 1],  # замены конечны
+        ["ababa", "c", "c", 0],  # замен не будет
+        ["ababac", "c", "c", "Impossible"],  # меняем строку на самоё себя
+        ["ccacc", "cac", 'caca', "Impossible"],  # замены бесконечны
+        ["ccacc", "cac", 'accca', "Impossible"]  # замены бесконечны и экспоненциально увеличивают строку
+    ]
+    n = len(lst)
+    for i, el in enumerate(lst):
+        assert count_replaces(el[0], el[1], el[2]) == el[3]
+        print(f"{i + 1} of {n} is OK")
+
+
+test()
+
+# if __name__ == '__main__':
+#     test()
+#     main()

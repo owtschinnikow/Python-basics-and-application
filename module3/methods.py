@@ -16,16 +16,16 @@
 # print(s.endswith(".png"))
 
 # s = "abacaba"
-# print(s.count("aba"))
-# print(s.count.__doc__)
+# print(s.count_replaces("aba"))
+# print(s.count_replaces.__doc__)
 # print(s.find("aba"))
 # print(s.rfind("aba"))
 
 # s = "The man in black fled across the desert, and the gunslinger followed"
 # print(s.lower())
 # print(s.upper())
-# print(s.count("the"))
-# print(s.lower().count("the"))
+# print(s.count_replaces("the"))
+# print(s.lower().count_replaces("the"))
 
 # s = "1,2,3,4"
 # print(s)

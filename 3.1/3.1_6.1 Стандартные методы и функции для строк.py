@@ -27,28 +27,29 @@ c
 Sample Output 4:
 Impossible
 
-Если а присутствует в b и а присутствует в s﻿ - угадайте, что будет?
+Если а присутствует в b и а присутствует в s - угадайте, что будет?
 """
 
 
 def count_replaces(s, a, b):
     n = 0
-    control_number = 0
     if a not in s:
         return n
-    if a == b:
+    elif a in b:
         return 'Impossible'
-    if a in b:
-        return 'Impossible'
-
-    while n != 1000:
+    while n < 1000:
+        control_number = 0
         while control_number != -1:
-            control_number = s.find(a)
-            for i in b:
-                s = s[:control_number] + b + s[control_number + len(b):]
+            s = s[:control_number] + b + s[control_number + len(a):]
+            control_number = s[control_number + len(b):].find(a) + len(b) + control_number
+            # print(control_number, s)
+        else:
+            break
         n += 1
+    if n < 1000:
         return n
-    return 'Impossible'
+    else:
+        return 'Impossible-1'
 
 
 def main():
@@ -63,16 +64,18 @@ def test():
         ["ababa", "c", "c", 0],  # замен не будет
         ["ababac", "c", "c", "Impossible"],  # меняем строку на самоё себя
         ["ccacc", "cac", 'caca', "Impossible"],  # замены бесконечны
-        ["ccacc", "cac", 'accca', "Impossible"]  # замены бесконечны и экспоненциально увеличивают строку
+        ["ccacc", "cac", 'accca', "Impossible"],  # замены бесконечны и экспоненциально увеличивают строку
+        ["abababa", "aba", 'ada', 2]
     ]
     n = len(lst)
     for i, el in enumerate(lst):
-        assert count_replaces(el[0], el[1], el[2]) == el[3]
-        print(f"{i + 1} of {n} is OK")
+        answer = count_replaces(el[0], el[1], el[2])
+        if answer == el[3]:
+            print(f"{i + 1} of {n} is OK", 'answer = ', answer)
+        else:
+            print(f"{i + 1} of {n} is Fail", 'answer = ', answer)
 
 
-test()
-
-# if __name__ == '__main__':
-#     test()
-#     main()
+if __name__ == '__main__':
+    test()
+    # main()

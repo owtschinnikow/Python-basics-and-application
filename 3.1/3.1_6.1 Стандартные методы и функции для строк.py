@@ -38,18 +38,18 @@ def count_replaces(s, a, b):
     elif a in b:
         return 'Impossible'
     while n < 1000:
-        control_number = 0
-        while control_number != -1:
-            s = s[:control_number] + b + s[control_number + len(a):]
-            control_number = s[control_number + len(b):].find(a) + len(b) + control_number
-            # print(control_number, s)
-        else:
-            break
         n += 1
+        s = s.replace(a, b)
+        if s == s.replace(a, b):
+            break
+        elif len(s) < len(s.replace(a, b)):
+            return 'Impossible'
+    #     print(n)
+    # print(n)
     if n < 1000:
         return n
     else:
-        return 'Impossible-1'
+        return 'Impossible'
 
 
 def main():
@@ -59,21 +59,21 @@ def main():
 
 def test():
     lst = [
-        ["ababa", "a", "b", 1],  # замены конечны
-        ["ababa", "b", "a", 1],  # замены конечны
-        ["ababa", "c", "c", 0],  # замен не будет
-        ["ababac", "c", "c", "Impossible"],  # меняем строку на самоё себя
-        ["ccacc", "cac", 'caca', "Impossible"],  # замены бесконечны
-        ["ccacc", "cac", 'accca', "Impossible"],  # замены бесконечны и экспоненциально увеличивают строку
-        ["abababa", "aba", 'ada', 2]
+        ['ababa', 'a', 'b', 1],  # замены конечны
+        ['ababa', 'b', 'a', 1],  # замены конечны
+        ['ababa', 'c', 'c', 0],  # замен не будет
+        ['ababac', 'c', 'c', 'Impossible'],  # меняем строку на самоё себя
+        ['ccacc', 'cac', 'caca', 'Impossible'],  # замены бесконечны
+        ['ccacc', 'cac', 'accca', 'Impossible'],  # замены бесконечны и экспоненциально увеличивают строку
+        ['abababa', 'aba', 'ada', 2]
     ]
     n = len(lst)
     for i, el in enumerate(lst):
         answer = count_replaces(el[0], el[1], el[2])
         if answer == el[3]:
-            print(f"{i + 1} of {n} is OK", 'answer = ', answer)
+            print(f'{i + 1} of {n} is OK', 'answer = ', answer)
         else:
-            print(f"{i + 1} of {n} is Fail", 'answer = ', answer)
+            print(f'{i + 1} of {n} is Fail', 'answer = ', answer)
 
 
 if __name__ == '__main__':

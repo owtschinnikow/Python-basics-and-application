@@ -27,10 +27,11 @@ Sample Output 4:
 
 def number_of_occurrences(s, t):
     ans = 0
-    start = s.find(t)
     while t in s:
-        s.find(t)
-    return s.find(t)
+        start = s.find(t) + 1
+        s = s[start:]
+        ans += 1
+    return ans
 
 
 def main():

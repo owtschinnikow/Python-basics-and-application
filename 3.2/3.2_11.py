@@ -18,7 +18,7 @@ import re
 
 for line in sys.stdin:
     line = line.rstrip()
-    pattern = r'\b(\w*)\1\b'
+    pattern = r'\b(\w+)\1\b'
     result = re.search(pattern, line)
     if result != None:
         print(line)

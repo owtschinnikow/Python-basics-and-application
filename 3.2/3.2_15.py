@@ -2,12 +2,14 @@
 Буквой считается символ из группы \w.
 
 Sample Input:
-this is a text
-"this' !is. ?n1ce,
+attraction
+buzzzz
 
 Sample Output:
-htis si a etxt
-"htis' !si. ?1nce,
+atraction
+buz
+
+https://regex101.com/#python
 """
 
 import sys
@@ -20,4 +22,3 @@ for line in sys.stdin:
     result = re.search(pattern, line)
     if result != None:
         print(re.sub(pattern, r"\2\1", line, count=0, flags=re.IGNORECASE))
-

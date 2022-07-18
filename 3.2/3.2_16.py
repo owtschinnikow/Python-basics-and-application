@@ -1,17 +1,17 @@
 """
-Буквой считается символ из группы \w.
-
 Sample Input:
-attraction
-buzzzz
-mewmewNnyaaa
+0
+10010
+00101
+01001
+Not a number
+1 1
+0 0
 
 Sample Output:
-atraction
-buz
-mewmewNnya
-
-https://regex101.com/#python
+0
+10010
+01001
 """
 
 import sys
